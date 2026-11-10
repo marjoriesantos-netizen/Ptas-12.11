@@ -5,7 +5,6 @@ import usersRoutes from "./users.routes.js";
 
 const router = Router();
 
-/** GET /api/v1 — índice de endpoints da versão 1. */
 router.get("/", (req, res) => {
   res.status(200).json({
     name: "PTAS 12.11 API",

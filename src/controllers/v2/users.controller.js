@@ -4,10 +4,6 @@ import { UsersService } from "../../services/users.service.js";
 const DEFAULT_PER_PAGE = 10;
 const MAX_PER_PAGE = 100;
 
-/**
- * Normaliza page/perPage sem confiar no query string.
- * Valores inválidos caem no padrão em vez de gerar erro.
- */
 const parsePagination = (query) => {
   const rawPage = Number.parseInt(String(query.page ?? "1"), 10);
   const rawPerPage = Number.parseInt(String(query.perPage ?? DEFAULT_PER_PAGE), 10);

@@ -2,13 +2,6 @@ import { access, mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
-/**
- * Camada de persistência JSON.
- *
- * Cada coleção (users, products) tem seu próprio arquivo. Toda leitura
- * e escrita passa por aqui — nenhuma outra camada conhece o caminho
- * dos arquivos.
- */
 const DATA_DIR = dirname(fileURLToPath(new URL("./db.js", import.meta.url)));
 
 const FILES = {
@@ -16,7 +9,6 @@ const FILES = {
   products: fileURLToPath(new URL("./products.json", import.meta.url)),
 };
 
-// Uma fila por coleção evita que duas requisições sobrescrevam uma à outra.
 const writeQueues = new Map();
 
 const fileExists = async (path) => {
@@ -38,7 +30,6 @@ const getFile = (collection) => {
   return file;
 };
 
-/** Cria a pasta e os arquivos JSON vazios na primeira execução. */
 export const ensureDatabase = async () => {
   await mkdir(DATA_DIR, { recursive: true });
 
@@ -50,7 +41,6 @@ export const ensureDatabase = async () => {
   }
 };
 
-/** Lê uma coleção e garante que o conteúdo é um array. */
 export const readCollection = async (collection) => {
   const file = getFile(collection);
   await ensureDatabase();
@@ -69,16 +59,10 @@ const writeCollection = async (collection, data) => {
   const file = getFile(collection);
   const temporaryFile = `${file}.tmp`;
 
-  // Grava em arquivo temporário e renomeia: o JSON nunca fica pela metade.
   await writeFile(temporaryFile, `${JSON.stringify(data, null, 2)}\n`, "utf8");
   await rename(temporaryFile, file);
 };
 
-/**
- * Executa uma mutação dentro de uma fila serializada por coleção.
- * O mutador recebe o array, altera o que precisar e devolve o resultado
- * que será entregue ao model.
- */
 export const updateCollection = (collection, mutator) => {
   const previous = writeQueues.get(collection) ?? Promise.resolve();
 
@@ -89,7 +73,6 @@ export const updateCollection = (collection, mutator) => {
     return result;
   });
 
-  // Uma falha não deve travar a fila das próximas operações.
   writeQueues.set(
     collection,
     operation.catch(() => undefined),

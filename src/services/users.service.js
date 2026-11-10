@@ -15,10 +15,6 @@ const normalizeCreate = (data) => ({
   internalNotes: data.internalNotes ?? null,
 });
 
-/**
- * Service: regras de negócio de users.
- * Não conhece req/res; lança ErroHttp quando a regra é violada.
- */
 export const UsersService = {
   listar: () => UsersModel.listar(),
 

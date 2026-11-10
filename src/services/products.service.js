@@ -10,16 +10,12 @@ const normalizeCreate = (data) => ({
   price: data.price,
   stock: data.stock,
   active: data.active ?? true,
-  // Campos internos: persistidos, mas fora do DTO de saída.
+
   costPrice: data.costPrice ?? null,
   supplierCode: data.supplierCode ?? null,
   internalNotes: data.internalNotes ?? null,
 });
 
-/**
- * Service: regras de negócio de products.
- * Não conhece req/res; lança ErroHttp quando a regra é violada.
- */
 export const ProductsService = {
   listar: () => ProductsModel.listar(),
 

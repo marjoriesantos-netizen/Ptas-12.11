@@ -3,7 +3,6 @@ import { readCollection } from "../../data/db.js";
 
 const router = Router();
 
-/** GET /api/v1/health — status da API e contagem por coleção. */
 router.get("/", async (req, res, next) => {
   try {
     const [users, products] = await Promise.all([

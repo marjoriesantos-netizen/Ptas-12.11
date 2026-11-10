@@ -1,13 +1,5 @@
 import { once } from "node:events";
 
-/**
- * Testes de integração da API de users/products.
- *
- * Sobe o app em uma porta efêmera, exercita v1 e v2 no mesmo servidor
- * e valida o formato único de erro. Os registros criados são removidos
- * ao final.
- */
-
 process.env.NODE_ENV = "test";
 
 const { default: app } = await import("../app.js");
@@ -119,7 +111,7 @@ const createProduct = async () => {
 };
 
 const run = async () => {
-  // ---------- Exercício 1: tudo sob /api/v1 ----------
+
   const health = await request("/api/v1/health");
   assert(health.status === 200, "GET /api/v1/health responde 200", health);
 
@@ -130,7 +122,6 @@ const run = async () => {
   const outside = await request("/users");
   assert(outside.status === 404, "GET /users (sem prefixo) responde 404", outside);
 
-  // ---------- Exercício 3: formato de erro ----------
   const emptyUser = await request("/api/v1/users", {
     method: "POST",
     body: JSON.stringify({}),
@@ -160,7 +151,6 @@ const run = async () => {
     unexpected.data,
   );
 
-  // ---------- Exercício 4: DTO de users ----------
   const activeUsers = await request("/api/v1/users");
   assert(activeUsers.status === 200 && Array.isArray(activeUsers.data), "GET /api/v1/users responde array");
 
@@ -204,7 +194,6 @@ const run = async () => {
   const removedDetail = await request(`/api/v1/users/${user.id}`);
   assert(removedDetail.status === 404, "User removido responde 404", removedDetail);
 
-  // ---------- Exercício 4: DTO de products ----------
   const activeProducts = await request("/api/v1/products");
   assert(
     activeProducts.status === 200 && Array.isArray(activeProducts.data),
@@ -245,7 +234,6 @@ const run = async () => {
   assert(removedProduct.status === 204, "DELETE /api/v1/products/:id responde 204", removedProduct);
   createdProductIds.splice(createdProductIds.indexOf(product.id), 1);
 
-  // ---------- Exercício 5: v2 com envelope, v1 no formato antigo ----------
   const v2User = await request("/api/v2/users", {
     method: "POST",
     body: JSON.stringify({

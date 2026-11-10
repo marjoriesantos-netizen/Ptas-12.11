@@ -23,13 +23,10 @@ app.use(
 app.use(express.json({ limit: "100kb" }));
 app.use(logMiddleware);
 
-// Todas as rotas de negócio vivem sob /api/v1.
 app.use("/api/v1", v1Routes);
 
-// A v2 convive com a v1 no mesmo servidor (Exercício 5).
 app.use("/api/v2", v2Routes);
 
-// Rota usada apenas pelos testes para comprovar o formato do 500.
 if (process.env.NODE_ENV === "test") {
   app.get("/api/v1/_test/error", () => {
     throw new Error("Erro inesperado de teste");

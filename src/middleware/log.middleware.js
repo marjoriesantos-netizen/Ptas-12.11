@@ -1,7 +1,3 @@
-/**
- * Log de acesso: método, rota, status e tempo de resposta.
- * O listener de "finish" garante que o status já foi decidido.
- */
 export const logMiddleware = (req, res, next) => {
   const startedAt = process.hrtime.bigint();
 

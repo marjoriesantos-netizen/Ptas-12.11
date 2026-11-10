@@ -8,10 +8,6 @@ const byNewest = (first, second) =>
 
 const findIndexById = (users, id) => users.findIndex((user) => user.id === id);
 
-/**
- * Model: única camada que conversa com o arquivo JSON de users.
- * Não conhece req/res e não decide status HTTP.
- */
 export const UsersModel = {
   async listar() {
     const users = await readCollection(COLLECTION);
@@ -34,7 +30,7 @@ export const UsersModel = {
     const user = {
       id: randomUUID(),
       ...data,
-      // Campos internos: existem no model, mas nunca saem no DTO.
+
       internalNotes: data.internalNotes ?? null,
       _schemaVersion: 1,
       createdAt: now,

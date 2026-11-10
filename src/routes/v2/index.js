@@ -3,7 +3,6 @@ import usersRoutes from "./users.routes.js";
 
 const router = Router();
 
-/** GET /api/v2 — índice da versão 2. */
 router.get("/", (req, res) => {
   res.status(200).json({
     name: "PTAS 12.11 API",

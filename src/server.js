@@ -1,7 +1,6 @@
 import dotenv from "dotenv";
 import { fileURLToPath } from "node:url";
 
-// Carrega src/.env antes de avaliar o app (que lê CORS_ORIGIN).
 dotenv.config({ path: fileURLToPath(new URL("./.env", import.meta.url)) });
 
 const { default: app } = await import("./app.js");
