@@ -1,0 +1,22 @@
+[
+  {
+    "id": "6f3a1c2e-9b4d-4a71-8e02-1c5d7f9a0b11",
+    "name": "Ana Souza",
+    "email": "ana.souza@petcare.dev",
+    "role": "admin",
+    "passwordHash": "55a5e9e78207b4df8699d60886fa070079463547b095d1a05bc719bb4e6cd251",
+    "internalNotes": "Conta de demonstração criada no seed.",
+    "createdAt": "2026-11-01T12:00:00.000Z",
+    "updatedAt": "2026-11-01T12:00:00.000Z"
+  },
+  {
+    "id": "b2d4e6f8-1a3c-4e5f-9b7d-2c4e6a8b0d22",
+    "name": "Bruno Lima",
+    "email": "bruno.lima@petcare.dev",
+    "role": "cliente",
+    "passwordHash": "55a5e9e78207b4df8699d60886fa070079463547b095d1a05bc719bb4e6cd251",
+    "internalNotes": "Conta de demonstração criada no seed.",
+    "createdAt": "2026-11-02T12:00:00.000Z",
+    "updatedAt": "2026-11-02T12:00:00.000Z"
+  }
+]

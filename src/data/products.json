@@ -1,0 +1,30 @@
+[
+  {
+    "id": "a1c3e5f7-2b4d-4f60-8a9c-3e5f7b9d1c33",
+    "sku": "RACAO-001",
+    "name": "Ração Premium 10 kg",
+    "description": "Ração para cães adultos de porte médio.",
+    "price": 189.9,
+    "stock": 24,
+    "active": true,
+    "costPrice": 132.5,
+    "supplierCode": "FORN-ALPHA-01",
+    "internalNotes": "Margem interna calculada pelo financeiro.",
+    "createdAt": "2026-11-01T12:00:00.000Z",
+    "updatedAt": "2026-11-01T12:00:00.000Z"
+  },
+  {
+    "id": "c3e5a7b9-4d6f-4a81-9b0d-5f7a9c1e3d44",
+    "sku": "BRINQ-002",
+    "name": "Brinquedo mordedor",
+    "description": "Brinquedo de borracha atóxica para cães.",
+    "price": 34.9,
+    "stock": 50,
+    "active": true,
+    "costPrice": 14.2,
+    "supplierCode": "FORN-BETA-02",
+    "internalNotes": "Produto de giro rápido.",
+    "createdAt": "2026-11-02T12:00:00.000Z",
+    "updatedAt": "2026-11-02T12:00:00.000Z"
+  }
+]
